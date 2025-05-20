@@ -5,6 +5,16 @@
     <title>Calculadora Pós-Ordem</title>
 </head>
 <body>
+    <h1>Calculadora Pós-Ordem</h1>
 
+    <form method="POST" action="/calcular">
+        <label for="entrada">Entrada</label><br>
+        <input type="text" id="entrada" name="entrada" placeholder="3 4 +" required/>
+        <button type="submit">Calcular</button>
+    </form>
+
+    <div id="resultado">
+        <!-- aqui vamos mostrar o resultado -->
+    </div>
 </body>
 </html>
