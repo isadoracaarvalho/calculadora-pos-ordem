@@ -7,7 +7,7 @@ public class No <T>{
 
     public No(T elemento) {
         this.elemento = elemento;
-        this.proximo = proximo;
+        this.proximo = null;
     }
 
     public T getElemento() {
