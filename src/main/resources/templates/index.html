@@ -13,8 +13,8 @@
         <button type="submit">Calcular</button>
     </form>
 
-    <div id="resultado">
-        <!-- aqui vamos mostrar o resultado -->
+    <div id="resultado" th:if="${resultado != null}">
+        <h2>Resultado: <span th:text="${resultado}"></span></h2>
     </div>
 </body>
 </html>

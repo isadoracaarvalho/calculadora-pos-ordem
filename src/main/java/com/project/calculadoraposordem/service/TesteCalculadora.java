@@ -9,7 +9,7 @@ public class TesteCalculadora {
         FilaDinamica<String> fila = new FilaDinamica<>();
         PilhaDinamica<Double> pilha = new PilhaDinamica<>();
 
-        CalculadoraPosOrdem calculadora = new CalculadoraPosOrdem(fila, pilha);
+        CalculadoraPosOrdem calculadora = new CalculadoraPosOrdem();
 
         calculadora.inserirExpressao("2 3 1 * + 9 -");
 

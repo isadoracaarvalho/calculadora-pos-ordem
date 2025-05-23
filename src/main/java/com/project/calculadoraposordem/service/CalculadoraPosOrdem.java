@@ -2,15 +2,15 @@ package com.project.calculadoraposordem.service;
 
 import com.project.calculadoraposordem.models.FilaDinamica;
 import com.project.calculadoraposordem.models.PilhaDinamica;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CalculadoraPosOrdem {
 
-    FilaDinamica<String> fila;
-    PilhaDinamica<Double> pilha;
+    FilaDinamica<String> fila = new FilaDinamica<>();
+    PilhaDinamica<Double> pilha =  new PilhaDinamica<>();
 
-    public CalculadoraPosOrdem(FilaDinamica<String> fila, PilhaDinamica<Double> pilha) {
-        this.fila = fila;
-        this.pilha = pilha;
+    public CalculadoraPosOrdem() {
     }
 
     public void inserirExpressao(String expressao) {
