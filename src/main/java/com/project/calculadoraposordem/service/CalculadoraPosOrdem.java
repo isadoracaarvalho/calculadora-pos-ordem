@@ -20,34 +20,44 @@ public class CalculadoraPosOrdem {
         }
     }
 
+    public boolean isNumeric(String elemento) {
+        try {
+            Double.parseDouble(elemento);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public double calcularPosOrdem(){
         while(!fila.isVazia()){
             String elemento = fila.dequeue();
-            if (!elemento.equals("+") && !elemento.equals("-") && !elemento.equals("*") && !elemento.equals("/") && !elemento.equals("%")) {
+            if (isNumeric(elemento)) {
                 pilha.empilhar(Double.parseDouble(elemento));
-            } else if (elemento.equals("+")) {
+            } else {
                 Double elemento1 = pilha.desempilhar();
                 Double elemento2 = pilha.desempilhar();
-                pilha.empilhar(elemento2 + elemento1);
-            } else if (elemento.equals("-")) {
-                Double elemento1 = pilha.desempilhar();
-                Double elemento2 = pilha.desempilhar();
-                pilha.empilhar(elemento2 - elemento1);
-            } else if (elemento.equals("*")) {
-                Double elemento1 = pilha.desempilhar();
-                Double elemento2 = pilha.desempilhar();
-                pilha.empilhar(elemento1 * elemento2);
-            } else if (elemento.equals("/")){
-                Double elemento1 = pilha.desempilhar();
-                Double elemento2 = pilha.desempilhar();
-                pilha.empilhar(elemento2 / elemento1);
-            } else if (elemento.equals("%")) {
-                Double elemento1 = pilha.desempilhar();
-                Double elemento2 = pilha.desempilhar();
-                pilha.empilhar(elemento2 % elemento1);
+                switch (elemento) {
+                    case "+":
+                        pilha.empilhar(elemento2 + elemento1);
+                        break;
+                    case "-":
+                        pilha.empilhar(elemento2 - elemento1);
+                        break;
+                    case "*":
+                        pilha.empilhar(elemento2 * elemento1);
+                        break;
+                    case "/":
+                        pilha.empilhar(elemento2 / elemento1);
+                        break;
+                    case "%":
+                        pilha.empilhar(elemento2 % elemento1);
+                        break;
+                    default:
+                        // aqui vamos puxar o erro de operador inválido
+                }
             }
         }
         return pilha.desempilhar();
     }
-
 }
