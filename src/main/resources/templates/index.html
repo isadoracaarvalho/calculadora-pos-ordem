@@ -11,13 +11,29 @@
 
         <form method="POST" action="/calcular">
             <label for="entrada">Entrada</label>
-            <input type="text" id="entrada" name="entrada" placeholder="3 4 +" required/>
+            <input type="text" id="entrada" name="entrada" th:value="${entradaAnterior}" placeholder="3 4 +" required/>
             <button type="submit">Calcular</button>
         </form>
+
+        <div th:if="${mensagemErro != null}" class="mensagem-erro" id="error-message-box">
+            <p th:text="${mensagemErro}"></p>
+        </div>
+
 
         <div class="resultado" id="resultado" th:if="${resultado != null}">
             <h2>Resultado: <span th:text="${resultado}"></span></h2>
         </div>
     </div>
+    <script th:if="${mensagemErro != null}">
+        document.addEventListener('DOMContentLoaded', function (){
+           var errorMessage = document.getElementById('error-message-box');
+           if (errorMessage) {
+               errorMessage.classList.add('show-error');
+               setTimeout(function (){
+                   errorMessage.classList.remove('show-error');
+               }, 5000);
+           }
+        });
+    </script>
 </body>
 </html>

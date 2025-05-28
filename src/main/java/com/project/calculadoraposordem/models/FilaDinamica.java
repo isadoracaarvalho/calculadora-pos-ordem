@@ -1,5 +1,7 @@
 package com.project.calculadoraposordem.models;
 
+import java.util.NoSuchElementException;
+
 public class FilaDinamica<T>{
 
     private No<T> inicio;
@@ -26,13 +28,18 @@ public class FilaDinamica<T>{
     // desenfileira um elemento
     public T dequeue(){
         if(isVazia()){
-            return null;
+            throw new NoSuchElementException("A fila está vazia");
         }
         T removido = inicio.elemento;
         inicio = inicio.proximo;
         tamanho--;
         return removido;
     }
+
+    public int getTamanho() {
+        return tamanho;
+    }
+
     // imprime os elementos da fila
     public void imprimeElementos(){
         if(isVazia()){
