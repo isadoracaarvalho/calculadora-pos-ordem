@@ -20,6 +20,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     width: 500px;
     max-width: 90%;
+    position: relative;
 }
 
 .calculadora h1 {
@@ -37,6 +38,7 @@ form {
 label {
     font-size: 20px;
     display: inline-block;
+    color: #555;
 }
 
 input[type="text"] {
@@ -76,4 +78,62 @@ button:hover {
     color: #333;
     font-weight: bold;
     text-align: center;
+}
+
+.mensagem-erro {
+    position: absolute; /* Posição absoluta em relação ao .calculadora */
+    /* Posicione o balão próximo ao campo de entrada para que pareça "apontar" para ele */
+    /* Você pode ajustar 'top' e 'left' conforme a altura do seu input e o espaçamento desejado */
+    top: calc(50% - 20px); /* Aproximadamente no meio da calculadora, ajuste conforme necessário */
+    left: calc(100% + 20px); /* 20px de espaço à direita da calculadora */
+    transform: translateY(-50%); /* Centraliza verticalmente o balão */
+
+    background-color: #ffe0e0; /* Fundo vermelho claro para erro, harmoniza com o tema */
+    color: #cc0000; /* Texto vermelho escuro */
+    padding: 10px 15px;
+    border: 1px solid #ff9999; /* Borda vermelha mais clara */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+    font-size: 0.9em; /* Tamanho da fonte ligeiramente menor */
+    max-width: 250px; /* Largura máxima para o balão */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+
+    opacity: 0; /* Começa invisível */
+    visibility: hidden; /* Oculta para leitores de tela quando invisível */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave ao aparecer/desaparecer */
+    pointer-events: none; /* Permite clicar através do balão quando invisível */
+}
+
+.mensagem-erro p {
+    margin: 0; /* Remove margem padrão do parágrafo dentro do balão */
+}
+
+/* Triângulo "seta" do balão */
+.mensagem-erro::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15px; /* Posiciona à esquerda do balão */
+    transform: translateY(-50%);
+    border-width: 10px 10px 10px 0; /* Cria um triângulo apontando para a esquerda */
+    border-style: solid;
+    border-color: transparent #ff9999 transparent transparent; /* Cor da borda da seta (combinando com a borda do balão) */
+}
+
+.mensagem-erro::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -13px; /* Um pouco mais à direita que a borda para sobrepor o preenchimento */
+    transform: translateY(-50%);
+    border-width: 8px 8px 8px 0; /* Ajuste para o preenchimento */
+    border-style: solid;
+    border-color: transparent #ffe0e0 transparent transparent; /* Cor de fundo da seta (combinando com o fundo do balão) */
+}
+
+/* Classe para mostrar o balão com JavaScript */
+.mensagem-erro.show-error {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Permite interação quando visível */
 }

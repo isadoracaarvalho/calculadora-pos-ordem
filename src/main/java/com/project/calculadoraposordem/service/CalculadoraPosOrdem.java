@@ -64,12 +64,12 @@ public class CalculadoraPosOrdem {
                 if (pilha.getTamanho() < 2) {
                     throw new ExpressaoInvalidaException("Expressão inválida: Operação '" + elemento + "' sem elementos suficientes.");
                 }
-                Double operando1;
-                Double operando2;
+                Double elemento1;
+                Double elemento2;
 
                 try {
-                    operando1 = pilha.desempilhar();
-                    operando2 = pilha.desempilhar();
+                    elemento1 = pilha.desempilhar();
+                    elemento2 = pilha.desempilhar();
                 } catch (EmptyStackException e) {
                     throw new ExpressaoInvalidaException("Expressão inválida: Operação '" + elemento + "' sem elementos suficientes.");
                 }
@@ -78,32 +78,32 @@ public class CalculadoraPosOrdem {
 
                 switch (elemento) {
                     case "+":
-                        resultadoOperacao = operando2 + operando1;
+                        resultadoOperacao = elemento2 + elemento1;
                         break;
                     case "-":
-                        resultadoOperacao = operando2 - operando1;
+                        resultadoOperacao = elemento2 - elemento1;
                         break;
                     case "*":
-                        resultadoOperacao = operando2 * operando1;
+                        resultadoOperacao = elemento2 * elemento1;
                         break;
                     case "/":
-                        if (operando1 == 0) {
+                        if (elemento1 == 0) {
                             throw new DivisaoPorZeroException("Erro: Divisão por zero.");
                         }
-                        resultadoOperacao = operando2 / operando1;
+                        resultadoOperacao = elemento2 / elemento1;
                         break;
                     case "%":
-                        if (operando1 == 0) {
+                        if (elemento1 == 0) {
                             throw new DivisaoPorZeroException("Erro: Resto da divisão por zero.");
                         }
-                        resultadoOperacao = operando2 % operando1;
+                        resultadoOperacao = elemento2 % elemento1;
                         break;
                     default:
                         throw new ExpressaoInvalidaException("Expressão inválida: Operador desconhecido '" + elemento + "'.");
                 }
                 pilha.empilhar(resultadoOperacao);
             } else {
-                throw new ExpressaoInvalidaException("Expressão inválida: Caractere ou token desconhecido '" + elemento + "'.");
+                throw new ExpressaoInvalidaException("Expressão inválida: Caractere'" + elemento + "'.");
             }
         }
 
@@ -111,7 +111,7 @@ public class CalculadoraPosOrdem {
             throw new ExpressaoInvalidaException("Expressão inválida: Nenhum resultado final na pilha. Refaça a operação.");
         }
         if (pilha.getTamanho() > 1) {
-            throw new ExpressaoInvalidaException("Expressão inválida: Quantidade de elementos excedentes.");
+            throw new ExpressaoInvalidaException("Expressão inválida: Quantidade de elementos insuficiente.");
         }
 
         try {
